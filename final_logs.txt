@@ -1,0 +1,345 @@
+Machine Learning Assignment 3 - Final Execution Logs
+Student: Bhisham Sharma | Roll Number: M26MAC003 | Seed: 26003
+======================================================================
+
+
+--- Common Setup: Stratified Train/Val Split (45k / 5k) with Seed 26003 (Cell 0) ---
+Using device: cuda
+100%|██████████| 170M/170M [15:26<00:00, 184kB/s]
+Done! Train: 45000 Val: 5000 Test: 10000
+
+
+--- Q1(a): Shallow & Wide MLP vs. Deep & Narrow MLP Training (15 Epochs) (Cell 1) ---
+Shallow MLP Parameters: 1,183,882
+Deep MLP Parameters:    1,165,514
+
+--- Training Shallow MLP ---
+Epoch [01/15] | Train Acc: 41.16% | Val Acc: 45.88%
+Epoch [02/15] | Train Acc: 49.11% | Val Acc: 46.76%
+Epoch [03/15] | Train Acc: 52.10% | Val Acc: 48.38%
+Epoch [04/15] | Train Acc: 54.69% | Val Acc: 48.84%
+Epoch [05/15] | Train Acc: 56.96% | Val Acc: 48.34%
+Epoch [06/15] | Train Acc: 59.05% | Val Acc: 50.72%
+Epoch [07/15] | Train Acc: 60.78% | Val Acc: 50.20%
+Epoch [08/15] | Train Acc: 62.41% | Val Acc: 49.42%
+Epoch [09/15] | Train Acc: 64.14% | Val Acc: 50.78%
+Epoch [10/15] | Train Acc: 65.70% | Val Acc: 51.86%
+Epoch [11/15] | Train Acc: 67.40% | Val Acc: 51.32%
+Epoch [12/15] | Train Acc: 69.26% | Val Acc: 52.26%
+Epoch [13/15] | Train Acc: 70.85% | Val Acc: 50.84%
+Epoch [14/15] | Train Acc: 71.65% | Val Acc: 51.86%
+Epoch [15/15] | Train Acc: 73.67% | Val Acc: 49.90%
+
+--- Training Deep MLP ---
+Epoch [01/15] | Train Acc: 39.70% | Val Acc: 44.18%
+Epoch [02/15] | Train Acc: 48.39% | Val Acc: 48.46%
+Epoch [03/15] | Train Acc: 52.32% | Val Acc: 50.10%
+Epoch [04/15] | Train Acc: 56.07% | Val Acc: 52.30%
+Epoch [05/15] | Train Acc: 58.71% | Val Acc: 52.26%
+Epoch [06/15] | Train Acc: 61.23% | Val Acc: 53.54%
+Epoch [07/15] | Train Acc: 63.80% | Val Acc: 52.62%
+Epoch [08/15] | Train Acc: 66.36% | Val Acc: 52.66%
+Epoch [09/15] | Train Acc: 68.81% | Val Acc: 52.88%
+Epoch [10/15] | Train Acc: 71.18% | Val Acc: 52.60%
+Epoch [11/15] | Train Acc: 73.57% | Val Acc: 53.00%
+Epoch [12/15] | Train Acc: 75.71% | Val Acc: 52.72%
+Epoch [13/15] | Train Acc: 77.46% | Val Acc: 53.72%
+Epoch [14/15] | Train Acc: 79.86% | Val Acc: 52.98%
+Epoch [15/15] | Train Acc: 81.05% | Val Acc: 52.00%
+
+
+--- Q1(a): Official Test Set Evaluation & Curves Generation (Cell 2) ---
+Final Test Accuracy - Shallow MLP: 49.67%
+Final Test Accuracy - Deep MLP:    52.38%
+ Plot saved successfully!
+
+
+--- Q1(b): Memorization Dynamics on 10k Subset with 30% Random Label Corruption (Cell 3) ---
+Extracting 10k images...
+Clean samples: 7000 | Noisy samples: 3000
+Epoch  1 | Clean:  36.8% | Noisy:  11.1% | Val:  34.5%
+Epoch  2 | Clean:  43.2% | Noisy:  12.9% | Val:  37.4%
+Epoch  3 | Clean:  45.7% | Noisy:  15.4% | Val:  37.4%
+Epoch  4 | Clean:  48.8% | Noisy:  15.4% | Val:  36.8%
+Epoch  5 | Clean:  54.6% | Noisy:  19.5% | Val:  40.2%
+Epoch  6 | Clean:  58.7% | Noisy:  21.2% | Val:  40.0%
+Epoch  7 | Clean:  61.5% | Noisy:  25.7% | Val:  39.1%
+Epoch  8 | Clean:  67.2% | Noisy:  29.7% | Val:  39.6%
+Epoch  9 | Clean:  70.0% | Noisy:  34.5% | Val:  39.0%
+Epoch 10 | Clean:  72.9% | Noisy:  39.5% | Val:  37.5%
+Epoch 11 | Clean:  77.8% | Noisy:  48.6% | Val:  38.1%
+Epoch 12 | Clean:  78.6% | Noisy:  53.0% | Val:  35.7%
+Epoch 13 | Clean:  81.9% | Noisy:  56.8% | Val:  35.9%
+Epoch 14 | Clean:  83.4% | Noisy:  62.5% | Val:  33.9%
+Epoch 15 | Clean:  85.4% | Noisy:  66.3% | Val:  35.1%
+Epoch 16 | Clean:  86.8% | Noisy:  70.0% | Val:  35.0%
+Epoch 17 | Clean:  89.9% | Noisy:  78.6% | Val:  33.7%
+Epoch 18 | Clean:  91.5% | Noisy:  79.1% | Val:  34.4%
+Epoch 19 | Clean:  90.8% | Noisy:  81.5% | Val:  34.7%
+Epoch 20 | Clean:  93.5% | Noisy:  83.9% | Val:  34.4%
+Epoch 21 | Clean:  94.0% | Noisy:  86.6% | Val:  34.0%
+Epoch 22 | Clean:  94.7% | Noisy:  87.2% | Val:  35.3%
+Epoch 23 | Clean:  95.6% | Noisy:  91.0% | Val:  34.1%
+Epoch 24 | Clean:  95.8% | Noisy:  90.0% | Val:  33.8%
+Epoch 25 | Clean:  95.6% | Noisy:  92.3% | Val:  33.2%
+
+
+--- Q1(b): Memorization Trajectory Plotting (Cell 4) ---
+Memorisation plot saved to results/q1/q1b_memorization.png
+
+
+--- Q2(a): Simple CNN Architecture Definition (Cell 5) ---
+CNN Parameters: 935882
+Deep MLP Parameters: 1165514
+
+
+--- Q2(a): Simple CNN Training (15 Epochs) & Checkpointing (Cell 6) ---
+Training CNN on clean CIFAR-10
+epoch  1 | train acc:  96.9% | val acc:  83.7%
+epoch  2 | train acc:  97.5% | val acc:  81.1%
+epoch  3 | train acc:  97.6% | val acc:  83.1%
+epoch  4 | train acc:  97.6% | val acc:  83.8%
+epoch  5 | train acc:  98.1% | val acc:  84.8%
+epoch  6 | train acc:  98.1% | val acc:  83.6%
+epoch  7 | train acc:  98.1% | val acc:  84.5%
+epoch  8 | train acc:  98.2% | val acc:  83.9%
+epoch  9 | train acc:  98.4% | val acc:  85.0%
+epoch 10 | train acc:  98.3% | val acc:  84.8%
+epoch 11 | train acc:  98.5% | val acc:  83.7%
+epoch 12 | train acc:  98.6% | val acc:  84.3%
+epoch 13 | train acc:  98.6% | val acc:  84.1%
+epoch 14 | train acc:  98.7% | val acc:  85.2%
+epoch 15 | train acc:  98.6% | val acc:  84.7%
+
+Final Test Accuracy - Clean CNN: 84.45%
+Saved clean_cnn.pt successfully!
+
+
+--- Q2(b): Spatial Pixel Permutation Evaluation (MLP vs. CNN) (Cell 7) ---
+Training MLP on permuted data.
+epoch  1 | train acc:  39.7%
+epoch  2 | train acc:  48.4%
+epoch  3 | train acc:  52.5%
+epoch  4 | train acc:  55.9%
+epoch  5 | train acc:  58.7%
+epoch  6 | train acc:  61.5%
+epoch  7 | train acc:  63.9%
+epoch  8 | train acc:  66.2%
+epoch  9 | train acc:  68.8%
+epoch 10 | train acc:  71.0%
+epoch 11 | train acc:  73.3%
+epoch 12 | train acc:  75.7%
+epoch 13 | train acc:  77.6%
+epoch 14 | train acc:  79.3%
+epoch 15 | train acc:  81.4%
+
+Training CNN on permuted data.
+epoch  1 | train acc:  28.2%
+epoch  2 | train acc:  37.6%
+epoch  3 | train acc:  43.9%
+epoch  4 | train acc:  48.6%
+epoch  5 | train acc:  53.0%
+epoch  6 | train acc:  57.0%
+epoch  7 | train acc:  61.2%
+epoch  8 | train acc:  64.9%
+epoch  9 | train acc:  69.5%
+epoch 10 | train acc:  73.8%
+epoch 11 | train acc:  77.2%
+epoch 12 | train acc:  80.7%
+epoch 13 | train acc:  83.6%
+epoch 14 | train acc:  86.1%
+epoch 15 | train acc:  87.9%
+
+Final Test Accuracy on Permuted CIFAR-10:
+Permuted Deep MLP: 51.55%
+Permuted Clean CNN: 51.47%
+
+
+--- Q2(c): 12x12 Center Occlusion Evaluation & Prediction Confidence Analysis (Cell 8) ---
+Training occluded CNN...
+epoch  1 | train acc:  49.7%
+epoch  2 | train acc:  64.7%
+epoch  3 | train acc:  70.1%
+epoch  4 | train acc:  74.2%
+epoch  5 | train acc:  77.1%
+epoch  6 | train acc:  79.7%
+epoch  7 | train acc:  81.6%
+epoch  8 | train acc:  83.8%
+epoch  9 | train acc:  85.7%
+epoch 10 | train acc:  87.3%
+epoch 11 | train acc:  88.8%
+epoch 12 | train acc:  90.3%
+epoch 13 | train acc:  92.1%
+epoch 14 | train acc:  92.6%
+epoch 15 | train acc:  94.0%
+
+Occluded CNN Test Acc: 77.82%
+Mean Confidence (Correct): 93.73%
+Mean Confidence (Errors):  74.61%
+plot saved
+
+
+--- Q2(c): Confidence Distribution Histogram Generation (Cell 9) ---
+plot saved
+
+
+--- Q2: Final Deliverable Summary Table Generation (Cell 10) ---
+QUESTION 2: FINAL EXPERIMENTAL COMPARISON
+       Model  Parameters             Condition  Test Accuracy (%)
+    Deep MLP     1165514                 Clean              52.38
+  Simple CNN      935882                 Clean              84.45
+Permuted MLP     1165514    Spatially Permuted              51.55
+Permuted CNN      935882    Spatially Permuted              51.47
+Occluded CNN      935882 12x12 Center Occluded              77.82
+Saved summary table to results/q2/q2_summary_table.csv
+
+
+--- Q3(a): Convolutional Autoencoder Sweeps (Bottlenecks 64, 256, 1024) (Cell 11) ---
+
+Training Autoencoder (Bottleneck: 64)...
+Parameters: 450,627
+epoch  1 | train mse: 0.3390
+epoch  2 | train mse: 0.1761
+epoch  3 | train mse: 0.1519
+epoch  4 | train mse: 0.1394
+epoch  5 | train mse: 0.1355
+epoch  6 | train mse: 0.1332
+epoch  7 | train mse: 0.1312
+epoch  8 | train mse: 0.1300
+epoch  9 | train mse: 0.1291
+epoch 10 | train mse: 0.1281
+--> Bottleneck 64 Val MSE: 0.1296
+
+Training Autoencoder (Bottleneck: 256)...
+Parameters: 1,237,251
+epoch  1 | train mse: 0.3151
+epoch  2 | train mse: 0.1418
+epoch  3 | train mse: 0.1060
+epoch  4 | train mse: 0.0882
+epoch  5 | train mse: 0.0786
+epoch  6 | train mse: 0.0714
+epoch  7 | train mse: 0.0654
+epoch  8 | train mse: 0.0620
+epoch  9 | train mse: 0.0581
+epoch 10 | train mse: 0.0554
+--> Bottleneck 256 Val MSE: 0.0558
+
+Training Autoencoder (Bottleneck: 1024)...
+Parameters: 4,383,747
+epoch  1 | train mse: 0.2978
+epoch  2 | train mse: 0.1269
+epoch  3 | train mse: 0.0922
+epoch  4 | train mse: 0.0753
+epoch  5 | train mse: 0.0651
+epoch  6 | train mse: 0.0590
+epoch  7 | train mse: 0.0527
+epoch  8 | train mse: 0.0485
+epoch  9 | train mse: 0.0456
+epoch 10 | train mse: 0.0420
+--> Bottleneck 1024 Val MSE: 0.0425
+
+Selected Best Model: Bottleneck = 1024 (Val MSE: 0.0425)
+Final Test Reconstruction MSE (Bottleneck 1024): 0.0422
+plot saved to results/q3/q3a_reconstructions.png
+
+
+--- Q3(b): Denoising Autoencoder (sigma=0.25) Training & Downstream Evaluation (Cell 14) ---
+Original Clean CNN Test Acc: 84.45%
+Noisy Images Test Acc:       50.47%
+Clean AE Recon Test Acc:     45.78%
+DAE Recon Test Acc:          37.18%
+plot saved
+
+
+--- Q3(c): Linear Probing on Frozen Latent Spaces (64, 256, 1024) (Cell 15) ---
+Evaluating Latent Space (Bottleneck: 64)...
+Bottleneck   64 | Recon MSE: 0.1296 | Linear Acc: 36.23%
+Evaluating Latent Space (Bottleneck: 256)...
+Bottleneck  256 | Recon MSE: 0.0558 | Linear Acc: 41.22%
+Evaluating Latent Space (Bottleneck: 1024)...
+Bottleneck 1024 | Recon MSE: 0.0425 | Linear Acc: 44.79%
+
+--- Summary: Recon Quality vs Class Info ---
+Bottleneck   64 -> MSE: 0.1296 | Linear Acc: 36.23%
+Bottleneck  256 -> MSE: 0.0558 | Linear Acc: 41.22%
+Bottleneck 1024 -> MSE: 0.0425 | Linear Acc: 44.79%
+plot saved
+
+
+--- Q4(a): Fixed Representation Kernel SVM Hyperparameter Sweeps (C in [0.01..100]) (Cell 16) ---
+Extracting fixed representations for Q4...
+
+--- Starting SVM Grid Sweep ---
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: linear | C:   0.01 | Train Acc:  57.2% | Val Acc:  40.7% | SV Frac: 0.916
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: linear | C:   0.10 | Train Acc:  52.4% | Val Acc:  36.5% | SV Frac: 0.959
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: linear | C:   1.00 | Train Acc:  36.6% | Val Acc:  29.2% | SV Frac: 0.970
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: linear | C:  10.00 | Train Acc:  36.6% | Val Acc:  29.2% | SV Frac: 0.970
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: linear | C: 100.00 | Train Acc:  36.6% | Val Acc:  29.2% | SV Frac: 0.970
+Kernel: poly   | C:   0.01 | Train Acc:  13.2% | Val Acc:  10.0% | SV Frac: 0.998
+Kernel: poly   | C:   0.10 | Train Acc:  37.4% | Val Acc:  31.0% | SV Frac: 0.982
+Kernel: poly   | C:   1.00 | Train Acc:  71.6% | Val Acc:  42.3% | SV Frac: 0.953
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: poly   | C:  10.00 | Train Acc:  96.3% | Val Acc:  44.3% | SV Frac: 0.929
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: poly   | C: 100.00 | Train Acc:  99.9% | Val Acc:  43.9% | SV Frac: 0.919
+Kernel: rbf    | C:   0.01 | Train Acc:  10.8% | Val Acc:   9.0% | SV Frac: 1.000
+Kernel: rbf    | C:   0.10 | Train Acc:  40.8% | Val Acc:  35.5% | SV Frac: 0.991
+Kernel: rbf    | C:   1.00 | Train Acc:  67.5% | Val Acc:  46.1% | SV Frac: 0.959
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: rbf    | C:  10.00 | Train Acc:  98.7% | Val Acc:  47.2% | SV Frac: 0.959
+/usr/local/lib/python3.13/dist-packages/sklearn/svm/_base.py:305: ConvergenceWarning: Solver terminated early (max_iter=2000).  Consider pre-processing your data with StandardScaler or MinMaxScaler.
+  warnings.warn(
+Kernel: rbf    | C: 100.00 | Train Acc: 100.0% | Val Acc:  45.0% | SV Frac: 0.955
+
+==================================================
+Selected Best SVM: Kernel=rbf, C=10.0
+Validation Accuracy: 47.20%
+Final Test Accuracy: 46.40%
+==================================================
+plot saved to results/q4/q4a_svm_sweep.png
+
+
+--- Q4(b)-(c): Margin Boundary Hard Pairs & Unsupervised K-Means Clustering (Cell 17) ---
+plot saved
+Test ARI: 0.0399
+Test NMI: 0.0881
+
+Contingency Table:
+            Cluster_0  Cluster_1  Cluster_2  Cluster_3  Cluster_4  Cluster_5  \
+airplane           23         15          7         23         33         11   
+automobile          6         23         48         29         11         16   
+bird               30         42         27          6         14         13   
+cat                22         42         26          7         16         14   
+deer               25         43         32          9          3         14   
+dog                35         51         15         13         13         12   
+frog                6         49         46          7         14         31   
+horse              26         28         21         19          6          5   
+ship               17         11         18         44         10          5   
+truck               8         11         35         60         13          5   
+
+            Cluster_6  Cluster_7  Cluster_8  Cluster_9  
+airplane           11         24         46          3  
+automobile         18         18         11         18  
+bird               18         11         15         19  
+cat                28          5          4         35  
+deer               25          6          9         32  
+dog                21          3          3         19  
+frog               35          2          1         25  
+horse              50         14          2         22  
+ship                3         61         41          7  
+truck              23         32          7          9  
+contingency table saved
+
