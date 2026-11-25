@@ -1,0 +1,6 @@
+Model,Parameters,Condition,Test Accuracy (%)
+Deep MLP,1165514,Clean,52.38
+Simple CNN,935882,Clean,84.45
+Permuted MLP,1165514,Spatially Permuted,51.55
+Permuted CNN,935882,Spatially Permuted,51.47
+Occluded CNN,935882,12x12 Center Occluded,77.82
