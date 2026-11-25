@@ -4,7 +4,7 @@
 - **Student Name:** Bhisham Sharma
 - **Roll Number:** M26MAC003
 - **Random Seed:** 26003 (Numeric digits of roll number in order)
-- **Repository:** https://github.com/bhisham-sharma/ML-Assignment-3-CIFAR10
+- **Repository:** https://github.com/Bhisham444/ML-Assignment-3-CIFAR10
 
 ---
 
@@ -15,7 +15,7 @@ This repository contains the complete experimental code, configurations, saved s
 ### Setup Environment
 ```bash
 # Clone the repository
-git clone https://github.com/bhisham-sharma/ML-Assignment-3-CIFAR10.git
+git clone https://github.com/Bhisham444/ML-Assignment-3-CIFAR10.git
 cd ML-Assignment-3-CIFAR10
 
 # Install dependencies

@@ -8,7 +8,7 @@
 \usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage{geometry}
-\geometry{top=0.75in,bottom=0.75in,left=0.75in,right=0.75in}
+\geometry{top=0.7in,bottom=0.7in,left=0.7in,right=0.7in}
 
 \hypersetup{
     colorlinks=true,
@@ -24,8 +24,8 @@
     \textbf{Bhisham Sharma} \\
     Roll Number: \texttt{M26MAC003} \\
     Random Seed: \texttt{26003} \\
-    GitHub Repository: \url{https://github.com/bhisham-sharma/ML-Assignment-3-CIFAR10} \\
-    Commit Hash: \texttt{af55ee0} \\
+    GitHub Repository: \url{https://github.com/Bhisham444/ML-Assignment-3-CIFAR10} \\
+    Commit Hash: \texttt{0b43fbe} \\
     Machine Learning
 }
 
@@ -44,6 +44,7 @@ In this assignment, we experiment with different machine learning models on the 
 For all our experiments, we use the standard CIFAR-10 dataset which has 60,000 color images of size $32 \times 32$ divided into 10 classes (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
 
 \begin{enumerate}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Train/Validation Split:} The 50,000 training images are split into 45,000 for training (4,500 per class) and 5,000 for validation (500 per class) in a stratified manner.
     \item \textbf{Random Seed:} The seed was taken from all digits of my roll number in order:
     \begin{equation*}
@@ -56,15 +57,17 @@ For all our experiments, we use the standard CIFAR-10 dataset which has 60,000 c
 
 \section{Question 1: Multi-Layer Perceptrons}
 
-\subsection{Q1(a): Width vs. Depth Under Equal Parameter Budget}
+\subsection{Q1(a): Width vs. Depth Under Equal Budget}
 
 \paragraph{Architecture Design.}
 MLPs usually struggle on images and stay around 50\% accuracy. We wanted to test whether this is because a single hidden layer cannot learn hierarchical features (lack of depth), or because flattening an image wastes almost all parameters in the first layer.
 
 To test this fairly, we kept the total parameter budget roughly equal around 1.17M parameters:
 \begin{enumerate}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Shallow \& Wide MLP (1 hidden layer):}
     \begin{itemize}
+        \setlength{\itemsep}{0pt}
         \item Input: 3072 features ($32 \times 32 \times 3$).
         \item Hidden layer: 384 units with ReLU.
         \item Output layer: 10 units.
@@ -73,6 +76,7 @@ To test this fairly, we kept the total parameter budget roughly equal around 1.1
     \end{itemize}
     \item \textbf{Deep \& Narrow MLP (4 hidden layers):}
     \begin{itemize}
+        \setlength{\itemsep}{0pt}
         \item Linear(3072, 320) $\to$ ReLU $\to$ Linear(320, 256) $\to$ ReLU $\to$ Linear(256, 256) $\to$ ReLU $\to$ Linear(256, 128) $\to$ ReLU $\to$ Linear(128, 10).
         \item Parameters: $983,360 + 82,176 + 65,792 + 32,896 + 1,290 = \mathbf{1,165,514}$.
         \item Here parameters are spread across depth.
@@ -109,12 +113,13 @@ Deep MLP    & 1,165,514 & 52.42\% & \textbf{52.38\%} \\
 
 As seen in Figure~\ref{fig:q1a_curves}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item Going from 1 to 4 hidden layers only improved the test accuracy by \textbf{+2.71\%} (from 49.67\% to 52.38\%).
     \item Even though the deep MLP had higher training accuracy (64.5\% vs 58.2\%), its validation loss started increasing after epoch 6, showing that it was simply overfitting rather than learning meaningful visual features.
     \item This shows that depth alone does not fix the problem with MLPs on images. The real issue is that flattening the image destroys spatial neighborhood information.
 \end{itemize}
 
-\subsection{Q1(b): Memorization vs. Generalization with Noisy Labels}
+\subsection{Q1(b): Memorization with Noisy Labels}
 
 \paragraph{Setup.}
 Next, we tested how a network behaves when some training labels are randomly corrupted. We took a stratified subset of 10,000 images from the training set and randomly replaced 30\% of the labels with uniformly random classes ($0-9$). The validation set was kept clean (100\% correct labels). We trained the Deep MLP on this noisy dataset for 25 epochs.
@@ -129,18 +134,20 @@ Next, we tested how a network behaves when some training labels are randomly cor
 \paragraph{Observations.}
 Looking at the trajectory in Figure~\ref{fig:q1b_memorization}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Epochs 1 to 5 (Learning Real Patterns):} Both clean training accuracy and validation accuracy climb steadily, with validation accuracy peaking around \textbf{40.2\%} at epoch 5. Even with 30\% fake labels, the network first fits the real, clean visual patterns because real patterns share common gradients across many images.
     \item \textbf{Epochs 6 to 25 (Brute-Force Memorization):} After epoch 5, the model runs out of easy patterns to learn and starts brute-force memorizing the wrong labels. The training accuracy keeps shooting up to \textbf{92.3\%}, while the validation accuracy drops down to \textbf{33.2\%}.
     \item This clearly demonstrates that neural networks learn simple, clean general patterns first before they start fitting noisy exceptions.
 \end{itemize}
 
-\section{Question 2: Convolutional Neural Networks}
+\section{Question 2: Convolutional Networks}
 
 \subsection{Q2(a): Fair Comparison: CNN vs. Deep MLP}
 
 \paragraph{CNN Architecture.}
 To compare with the Deep MLP fairly, we built a standard convolutional neural network with 3 conv blocks and fewer parameters:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item Block 1: Conv(3, 64) $\to$ BatchNorm $\to$ ReLU $\to$ Conv(64, 64) $\to$ BatchNorm $\to$ ReLU $\to$ MaxPool(2,2).
     \item Block 2: Conv(64, 128) $\to$ BatchNorm $\to$ ReLU $\to$ Conv(128, 128) $\to$ BatchNorm $\to$ ReLU $\to$ MaxPool(2,2).
     \item Block 3: Conv(128, 128) $\to$ BatchNorm $\to$ ReLU $\to$ MaxPool(2,2).
@@ -151,11 +158,11 @@ To compare with the Deep MLP fairly, we built a standard convolutional neural ne
 \paragraph{Training and Comparison.}
 We trained this CNN for 15 epochs with the same Adam optimizer (lr=0.001). As shown in Table~\ref{tab:q2_comparison}, the CNN reached \textbf{84.45\%} test accuracy, beating the Deep MLP (52.38\%) by more than \textbf{32\%}. This massive gain happens because convolution layers reuse filters across the entire image and look at nearby pixels together, which fits images naturally.
 
-\begin{table}[h]
+\begin{table}[t]
 \centering
-\small
 \caption{\textbf{Q2 Summary Table: Test Accuracy under different conditions.}}
 \label{tab:q2_comparison}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{llcc}
 \toprule
 \textbf{Model} & \textbf{Condition} & \textbf{Params} & \textbf{Test Acc (\%)} \\
@@ -166,20 +173,22 @@ Permuted MLP & Spatially Permuted   & 1,165,514 & 51.55\% \\
 Permuted CNN & Spatially Permuted   & 935,882   & \textbf{51.47\%} \\
 Occluded CNN & 12x12 Center Masked  & 935,882   & 77.82\% \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
-\subsection{Q2(b): Testing Spatial Structure with Pixel Permutation}
+\subsection{Q2(b): Spatial Pixel Permutation}
 
 \paragraph{Experiment.}
 To prove that the CNN advantage comes strictly from 2D spatial arrangement, we generated a fixed random permutation of all 1,024 pixel positions ($32 \times 32$) using our seed \texttt{26003}. We applied this exact same pixel scrambling to every image across train, val, and test sets, and retrained both models from scratch:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Permuted MLP:} Reached \textbf{51.55\%} test accuracy (virtually identical to clean MLP at 52.38\%). Since an MLP flattens pixels into a 1D vector and fully connects everything, the order of pixels does not matter to it.
     \item \textbf{Permuted CNN:} Dropped from 84.45\% down to \textbf{51.47\%} (a massive drop of 33\%).
 \end{itemize}
-When pixels are scrambled, nearby pixels no longer have any local correlation (a dog's ear pixel might end up next to a grass pixel). The CNN completely loses its advantage and performs no better than a basic MLP. This proves that CNNs are good specifically because of 2D spatial locality.
+When pixels are scrambled, nearby pixels no longer have any local correlation. The CNN completely loses its advantage and performs no better than a basic MLP. This proves that CNNs are good specifically because of 2D spatial locality.
 
-\subsection{Q2(c): Occlusion and Prediction Confidence}
+\subsection{Q2(c): Occlusion and Confidence Analysis}
 
 \begin{figure}[t]
     \centering
@@ -191,19 +200,20 @@ When pixels are scrambled, nearby pixels no longer have any local correlation (a
 \paragraph{Experiment.}
 We took our clean trained CNN and evaluated it on test images where the center $12 \times 12$ region was masked with zeros.
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item Overall test accuracy dropped from 84.45\% to \textbf{77.82\%} (a moderate drop of 6.63\%).
     \item As shown in the histogram in Figure~\ref{fig:q2c_confidence}, for correct predictions the model remains very confident (mean softmax confidence = \textbf{93.73\%}), whereas for misclassified examples the confidence drops significantly (mean = \textbf{74.61\%}) with a wide spread.
     \item This shows that the CNN uses features across the whole image (like background context and outer contours) rather than relying only on the center object.
-
 \end{itemize}
 
 \section{Question 3: Autoencoders}
 
-\subsection{Q3(a): Bottleneck Capacity vs. Reconstruction Error}
+\subsection{Q3(a): Bottleneck Capacity vs. Error}
 
 \paragraph{Architecture.}
 We trained three convolutional autoencoders with identical encoder and decoder layers, varying only the latent bottleneck size: $d \in \{64, 256, 1024\}$.
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item Encoder: Conv(3, 32) $\to$ ReLU $\to$ MaxPool(2,2) $\to$ Conv(32, 64) $\to$ ReLU $\to$ MaxPool(2,2) $\to$ Flatten $\to$ Linear(4096, $d$).
     \item Decoder: Linear($d$, 4096) $\to$ Reshape $\to$ ConvTranspose(64, 32) $\to$ ReLU $\to$ ConvTranspose(32, 3) $\to$ Sigmoid.
 \end{itemize}
@@ -219,6 +229,7 @@ All three were trained for 15 epochs using Mean Squared Error (MSE) loss and Ada
 \paragraph{Results.}
 As summarized in Table~\ref{tab:q3a_mse} and visualized in Figure~\ref{fig:q3a_recons}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Bottleneck 64:} High compression ($48\times$). Reconstructions are blurry, fine textures are lost, and validation MSE is \textbf{0.1296}.
     \item \textbf{Bottleneck 256:} Balanced compression ($12\times$). Object shapes and main colors are preserved well with validation MSE \textbf{0.0558}.
     \item \textbf{Bottleneck 1024:} Low compression ($3\times$). Sharpest details with validation MSE \textbf{0.0425} and test MSE \textbf{0.0422}.
@@ -247,6 +258,7 @@ Next, we trained a Denoising Autoencoder (DAE) with bottleneck 256. During train
 
 We then tested whether feeding images through this DAE could help our clean CNN classifier under different test conditions:
 \begin{enumerate}
+    \setlength{\itemsep}{1pt}
     \item Clean images on CNN: \textbf{84.45\%}.
     \item Noisy images ($\sigma=0.25$) on CNN: \textbf{50.47\%}.
     \item Clean images reconstructed by Clean AE: \textbf{45.78\%}.
@@ -265,7 +277,7 @@ Even though the DAE visibly removes the static noise (as seen in Figure~\ref{fig
 
 This happens because the autoencoder is trained with pixel-wise MSE loss. MSE loss finds an average of possible pixel values, which smooths out high-frequency edges and textures. While the photo looks cleaner to human eyes, the CNN relies heavily on sharp edge gradients to classify objects. By blurring those edges, the autoencoder accidentally strips away the very features the CNN needs.
 
-\subsection{Q3(c): Linear Probes on Latent Representations}
+\subsection{Q3(c): Linear Probes on Latent Spaces}
 
 \begin{figure}[t]
     \centering
@@ -280,6 +292,7 @@ We froze the encoder weights for all three autoencoders and trained a single lin
 \paragraph{Results.}
 As shown in Figure~\ref{fig:q3c_probe}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item Dimension 64: Linear Acc = \textbf{36.23\%} (MSE: 0.1296)
     \item Dimension 256: Linear Acc = \textbf{41.22\%} (MSE: 0.0558)
     \item Dimension 1024: Linear Acc = \textbf{44.79\%} (MSE: 0.0425)
@@ -303,12 +316,13 @@ Using our fixed 256-dimensional representation from the autoencoder, we trained 
 \paragraph{Results.}
 Looking at Figure~\ref{fig:q4a_svm}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Underfitting ($C=0.01$):} Every data point becomes a support vector (fraction $\approx 1.0$), and validation accuracy is poor (Linear: 40.8\%, RBF: 9.0\%).
     \item \textbf{Optimal Setting ($C=10.0$, RBF Kernel):} Gives the best validation accuracy of \textbf{47.20\%} and final test accuracy of \textbf{46.40\%}.
     \item \textbf{Overfitting ($C=100.0$):} Training accuracy hits 100.0\%, but validation accuracy drops to 45.0\% because the margin becomes too narrow and fits training noise.
 \end{itemize}
 
-\subsection{Q4(b): Near-Boundary Ambiguous Image Pairs}
+\subsection{Q4(b): Near-Boundary Image Pairs}
 
 \paragraph{Analysis.}
 We looked at test images that lie very close to the SVM decision boundary (decision score $\approx 0.00$) for three challenging pairs: Cat vs Dog, Automobile vs Truck, and Deer vs Horse.
@@ -322,25 +336,27 @@ We looked at test images that lie very close to the SVM decision boundary (decis
 
 As shown in Figure~\ref{fig:q4b_hard}:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Cat vs. Dog:} Images near score $0.00$ have ambiguous close-up pet faces with similar fur textures and ear shapes.
     \item \textbf{Automobile vs. Truck:} Ambiguity happens on pickup trucks, vans, and utility vehicles that share square bodies and windshield shapes with regular cars.
     \item \textbf{Deer vs. Horse:} Both have slender legs, brownish fur, and outdoor pasture backgrounds, making them hard to distinguish without visible antlers.
 \end{itemize}
 
-\subsection{Q4(c): K-Means Clustering vs. Supervised SVM}
+\subsection{Q4(c): K-Means Clustering vs. SVM}
 
 \paragraph{Clustering Setup.}
 Using the exact same 256-dimensional representations without labels, we ran K-Means clustering ($K=10$). We evaluated the test clustering quality:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item \textbf{Adjusted Rand Index (ARI):} \textbf{0.0399}
     \item \textbf{Normalized Mutual Information (NMI):} \textbf{0.0881}
 \end{itemize}
 
 \begin{table}[h]
 \centering
-\scriptsize
 \caption{\textbf{Q4(c) Contingency Table: True Classes vs K-Means Clusters.}}
 \label{tab:q4c_contingency}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrrrrrrr}
 \toprule
 \textbf{Class} & \textbf{C0} & \textbf{C1} & \textbf{C2} & \textbf{C3} & \textbf{C4} & \textbf{C5} & \textbf{C6} & \textbf{C7} & \textbf{C8} & \textbf{C9} \\
@@ -356,12 +372,14 @@ Horse      & 26 & 28 & 21 & 19 &  6 &  5 & 50 & 14 &  2 & 22 \\
 Ship       & 17 & 11 & 18 & 44 & 10 &  5 &  3 & 61 & 41 &  7 \\
 Truck      &  8 & 11 & 35 & \textbf{60} & 13 &  5 & 23 & 32 &  7 &  9 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \paragraph{Disagreement with Classification.}
 Examining the contingency table (Table~\ref{tab:q4c_contingency}) shows why unsupervised clustering disagrees with supervised classification:
 \begin{itemize}
+    \setlength{\itemsep}{1pt}
     \item In unsupervised space, \textbf{Cluster 1} lumps together \textbf{Cat (42)}, \textbf{Deer (43)}, \textbf{Dog (51)}, and \textbf{Frog (49)}. This happens because all these animal images share natural outdoor green grass and brown foliage backgrounds. K-Means groups them by their dominant background colors.
     \item Similarly, \textbf{Cluster 3} captures mostly vehicles: \textbf{Trucks (60)} and \textbf{Automobiles (29)}, while \textbf{Cluster 7} isolates \textbf{Ships (61)} due to blue water backgrounds.
 \end{itemize}
@@ -371,6 +389,7 @@ While unsupervised K-Means clusters images by dominant environmental colors and 
 
 From all our experiments on CIFAR-10, we conclude:
 \begin{enumerate}
+    \setlength{\itemsep}{1pt}
     \item \textbf{CNNs vs MLPs:} Making an MLP deeper gives almost no benefit (+2.71\%) on images. CNNs perform much better (84.45\%) because they use 2D spatial locality. Scrambling pixel positions ruins the CNN completely (drops to 51.47\%), while leaving the MLP unaffected.
     \item \textbf{Label Noise:} Models naturally learn clean, true patterns first before memorizing noisy labels.
     \item \textbf{Autoencoders and Denoising:} Autoencoder representations capture image colors and backgrounds, but pixel MSE smoothing removes sharp edges, causing downstream classification to degrade.
